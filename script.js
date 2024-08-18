@@ -21,9 +21,16 @@ function calculate(){
             };
 
             if(button.className == 'operator'){
-                display.innerHTML = '';
-                initArray(num, button.innerHTML);
-                num = '';
+
+                if(button.id === 'clear'){
+                    display.innerHTML = '';
+                    num = '';
+                    calcArray.splice(0,4);
+                }else{
+                    display.innerHTML = '';
+                    initArray(num, button.innerHTML);
+                    num = '';
+                };
             };
 
             if(calcArray.length >= 3){
