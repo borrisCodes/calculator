@@ -34,15 +34,21 @@ function calculate(){
             };
 
             if(calcArray.length >= 3){
+
+                console.log(calcArray)
                 let result = operate(calcArray[0],
                                     calcArray[1],
                                     calcArray[2]);
 
                 display.innerHTML = result;
-                console.log(calcArray);
-                calcArray.splice(0,3);
-                calcArray.unshift(result);
-                console.log(calcArray);
+
+                if(calcArray.includes('=')){
+                    calcArray.splice(0,2);
+                    num = result;
+                }else{
+                    calcArray.splice(0,3);
+                    calcArray.unshift(result);
+                };
             };
 
             console.log(calcArray);
@@ -52,7 +58,7 @@ function calculate(){
 
 function initArray(...args){
     calcArray.push(...args);
-}
+};
 
 function add(a, b){
     return a + b;
@@ -67,7 +73,7 @@ function multiply(a, b){
 };
 
 function divide(a, b){
-    return (a / b).toFixed(5);
+    return Math.round((a / b) * 1000) / 1000;
 };
 
 function operate(v1, operator, v2){
